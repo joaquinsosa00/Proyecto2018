@@ -5,11 +5,6 @@
  */
 package unt.herrera.prog2.tp7.gui.trabajos.modelos;
 
-import unt.herrera.prog2.tp7.gui.trabajos.modelos.Trabajo;
-import unt.herrera.prog2.tp7.gui.trabajos.modelos.AlumnoEnTrabajo;
-import unt.herrera.prog2.tp7.gui.trabajos.modelos.Rol;
-import unt.herrera.prog2.tp7.gui.trabajos.modelos.RolEnTrabajo;
-import unt.herrera.prog2.tp7.gui.trabajos.modelos.GestorRolEnTrabajo;
 import unt.herrera.prog2.tp7.gui.interfaces.IGestorTrabajos;
 import unt.herrera.prog2.tp7.gui.areas.modelos.Area;
 import java.time.LocalDate;
@@ -26,6 +21,7 @@ import unt.herrera.prog2.tp7.gui.personas.modelos.Profesor;
 public class GestorTrabajos implements IGestorTrabajos{
     private static GestorTrabajos gestor;
     private ArrayList<Trabajo> listaTrabajos = new ArrayList<>();
+    private ArrayList<RolEnTrabajo> RolesEnTrabajo = new ArrayList<>();
     
     private GestorTrabajos(){}; 
     
@@ -137,6 +133,14 @@ public class GestorTrabajos implements IGestorTrabajos{
 		return EXITO_TRABAJO_CREAR;
 	}
 
+    //COrregir y devolver otro mensaje
+    public String nuevoTrabajo(String titulo, int duracion, LocalDate fechaPresentacion, LocalDate fechaAprobacion, LocalDate fechaFinalizacion, List<Area> areas, List<RolEnTrabajo> profesores, List<AlumnoEnTrabajo> aet) {
+    Trabajo t = new Trabajo(titulo,duracion,areas,fechaPresentacion,fechaAprobacion,fechaFinalizacion,profesores,aet);
+    listaTrabajos.add(t);
+    return "TRabajo agregado";
+    }
+
+    
     @Override
     public Trabajo dameTrabajo(String titulo) {
 		
@@ -273,6 +277,6 @@ public class GestorTrabajos implements IGestorTrabajos{
 	}
     
     
-    
+   
     
 }

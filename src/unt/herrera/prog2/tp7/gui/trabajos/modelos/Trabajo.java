@@ -33,7 +33,7 @@ public class Trabajo implements Comparable<Trabajo>{
 	private List<AlumnoEnTrabajo> AlumnosEnTrabajo;
 	private List<Seminario> Seminarios;
 	private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        private List <Profesor> Profesores;
+        private Profesor unProfesor;
         
 
 	public Trabajo(String titulo, List<Area> unasAreas, int meses, LocalDate fechaPresentacion, List<AlumnoEnTrabajo> unosAlumnos, List<RolEnTrabajo> unosTrabajos) {
@@ -166,15 +166,13 @@ public class Trabajo implements Comparable<Trabajo>{
 			}
 		}
                 
-        if(!Seminarios.isEmpty()){ 
-		Collections.sort(Seminarios);
-			
+        		
             System.out.println("\nSeminario\n----------------------");
-            for (Seminario i : Seminarios) {
+            /*for (Seminario i : Seminarios) {
 
                 i.mostrar();
-            }
-        }
+            }*/
+        
 		
         System.out.println("***************************************************\n");
 	}
@@ -335,8 +333,8 @@ public class Trabajo implements Comparable<Trabajo>{
     }
 
     
-    //Devuelve la cantidad de profesores con el rol especificado
-    int cantidadProfesoresConRol(Rol unRol){
+    //Devuelve la cantidad de profesores con el rol especificado ANDA
+    public int cantidadProfesoresConRol(Rol unRol){
         int cant=0;
         for (RolEnTrabajo r : RolesEnTrabajo){
             if (r.getUnRol()==unRol){
@@ -347,8 +345,8 @@ public class Trabajo implements Comparable<Trabajo>{
     }
     
     
-    //Devuelve la cantidad de alumnos en el trabajo
-    int cantidadAlumnos(){
+    //Devuelve la cantidad de alumnos en el trabajo ANDA
+    public int cantidadAlumnos(){
         int cant=0;
         for (AlumnoEnTrabajo a : AlumnosEnTrabajo){
             cant++;
@@ -363,9 +361,108 @@ public class Trabajo implements Comparable<Trabajo>{
         }
         return cant;
         }
-    
+    boolean tieneSeminarios(){
+        int bandera=0;
+        if (Seminarios.size()!=0){
+            bandera=1;
+            return true;
+        }
+        return false;
+    }
+    //Anda
+    public boolean tieneEsteProfesor(Profesor unProfesor){
+        for(RolEnTrabajo r : RolesEnTrabajo){
+            if(r.getUnProfesor().equals(unProfesor)){
+                return true;
+            }
+        }
+        return false;
+    }
     
 	
+     public void agregarRolEnTrabajo (RolEnTrabajo unRolEnTrabajo){
+         if (unRolEnTrabajo!=null){
+      RolesEnTrabajo.add(unRolEnTrabajo);
+         }
+  }
   
+    void agregarSeminario (Seminario unSeminario){
+        if (unSeminario!=null){
+      Seminarios.add(unSeminario);
+  }  
+  }
+  
+    
+    public List<Seminario> verSeminarios() {
+        
+    Collections.sort(Seminarios);
+    return Seminarios;
+    }
+
+
+    boolean tieneesteSeminario (Seminario unSeminario){
+        if (unSeminario!=null){
+   for(Seminario s : Seminarios){
+            if (s==unSeminario){
+            return true;
+        }
+    }
+    
+    
+    }
+        return false;
+    }
+    
+//anda
+    public boolean estaFinalizado(){
+    
+        if(fechaFinalizacion!=null){
+        return true;
+        }
+    return false;
+}
+    
+    
+    
+    
+    boolean tieneEsteSeminario (Seminario unSeminario){
+        if(this.Seminarios.contains(unSeminario)){
+            return true;
+        }
+    return false;
+    }
+    
+    //ANDA 
+    public Profesor verTutorOCotutor(Rol unRol){
+        
+       for (RolEnTrabajo r : RolesEnTrabajo){
+            if ((r.getUnRol()).equals(unRol)){
+                return r.getUnProfesor();
+            }
+        }
+        return null;
+    }
+    
+    public List <Profesor> verJurado(){
+        List <Profesor> nuevaLista= new ArrayList<>();
+        
+        for (RolEnTrabajo r : RolesEnTrabajo){
+            if (r.getUnRol().equals(Rol.JURADO)){
+                nuevaLista.add(r.getUnProfesor());
+            }
+        }
+        return nuevaLista;
+    }
+    public List <AlumnoEnTrabajo> verAlumnosActuales(){
+        List <AlumnoEnTrabajo> nuevaLista= new ArrayList<>();
+        
+        
+        for (AlumnoEnTrabajo a : AlumnosEnTrabajo){
+            if (a.getFechaHasta()==null){
+                nuevaLista.add(a);
+            }
+        }
+        return nuevaLista;
+    }
     
 }

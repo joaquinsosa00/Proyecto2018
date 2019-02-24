@@ -103,7 +103,7 @@ public class Frm_Opciones extends javax.swing.JFrame {
         JFrame frame  = new Frm_GuardarDatos();
         frame.setLocationRelativeTo(frame);
         frame.setVisible(true);
-        this.hide();
+        
     }//GEN-LAST:event_btnGuardadoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
