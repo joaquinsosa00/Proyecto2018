@@ -4,3 +4,5 @@ fsdfs|dsfrew|seafs|08/02/2019|10/02/2019|02/02/2019|Peru|Item 1|Item 1|Item 1|It
 dasdsa|sdsad|asd|21/02/2019|02/02/2019|20/02/2019|lucas|Peru|Peru|Peru|Peru
 Proyecyo de programacion|4|sofware|07/02/2019|15/02/2019|09/02/2019|Mariana Sanchez|Fernanda Cardozo|Fernanda Cardozo|Mariana Sanchez|Joaquin Sosa
 fsd|fed|f|08/02/2019|16/02/2019|08/02/2019|Mariana Sanchez|Mariana Sanchez|Mariana Sanchez|Mariana Sanchez|Joaquin Sosa
+dasdsa|sdsad|asd|15/02/2019|28/01/1970|02/02/2019|Mariana Sanchez|Mariana Sanchez|Mariana Sanchez|Mariana Sanchez|Joaquin Sosa
+aa|bb|ccc|01/02/2019|02/02/2019|03/02/2019|Joaquin Sosa|Joaquin Sosa|Fernanda Cardozo|Luis Nieto|Geronimo Hourcade

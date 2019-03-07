@@ -31,7 +31,12 @@ public class Frm_Opciones extends javax.swing.JFrame {
         jLabel2.setIcon(icono1);
         this.setLocationRelativeTo(this);
         cerrar();
-        
+//        Jurado(Frm_GuardarDatos.comboJurado);
+//        Profesores(comboProfesor);
+////        Tutor(comboTutor);
+////        Cotutor(comboCotutor);
+////        Alumno(comboAlumno);
+//        
         
         
         setIconImage(new ImageIcon(getClass().getResource("/imagen/birrete (2).png")).getImage() );
@@ -103,6 +108,8 @@ public class Frm_Opciones extends javax.swing.JFrame {
         JFrame frame  = new Frm_GuardarDatos();
         frame.setLocationRelativeTo(frame);
         frame.setVisible(true);
+        this.setVisible(false);
+        Gestor.GestorTrabajo.bandera=1;
         
     }//GEN-LAST:event_btnGuardadoActionPerformed
 

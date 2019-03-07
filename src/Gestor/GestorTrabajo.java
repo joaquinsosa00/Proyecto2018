@@ -32,16 +32,20 @@ public class GestorTrabajo
     Vector trabajo = new Vector ();
     
     static ArrayList <Trabajo> trabajos= new ArrayList<>();
-    static ArrayList <Profesor> profesores= new ArrayList<>();
-    static ArrayList <Profesor> cotutores= new ArrayList<>();
-    static ArrayList <Profesor> tutores= new ArrayList<>();
-    static ArrayList <Profesor> jurados= new ArrayList<>();
-    static ArrayList <Area> areas= new ArrayList<>();
-    static ArrayList <Alumno> alumnos= new ArrayList<>();
+    public static ArrayList <Profesor> profesores= new ArrayList<>();
+    public static ArrayList <Profesor> cotutores= new ArrayList<>();
+    public static ArrayList <Profesor> tutores= new ArrayList<>();
+    public static ArrayList <Profesor> jurados= new ArrayList<>();
+    public static ArrayList <Area> areas= new ArrayList<>();
+    public static ArrayList <Alumno> alumnos= new ArrayList<>();
     public void guardar(Trabajo unDistrito) {
      trabajo.addElement(unDistrito);
     }
+    public static int bandera=0;
 public static void Profesores(JComboBox chopais){
+    
+    if(bandera==0){
+        
     Profesor t1= new Profesor("Sanchez","Mariana",53, Cargo.ADJUNTO);
     Profesor t2= new Profesor("Nieto","Luis",53, Cargo.ADJUNTO);
     Profesor t3= new Profesor("Cardozo","Fernanda",53, Cargo.ADJUNTO);
@@ -53,9 +57,17 @@ public static void Profesores(JComboBox chopais){
     profesores.add(t4);
     for (Profesor t : profesores){
         chopais.addItem(t.getNombres()+" " +t.getApellidos());
+    }
+    }
+    else{
+    for (Profesor t : profesores){
+        chopais.addItem(t.getNombres()+" " +t.getApellidos());
     } 
-}
+    }
+    }
+
 public static void Jurado(JComboBox chopais){
+    if(bandera==0){
     Profesor t1= new Profesor("Sanchez","Mariana",53, Cargo.ADJUNTO);
     Profesor t2= new Profesor("Nieto","Luis",53, Cargo.ADJUNTO);
     Profesor t3= new Profesor("Cardozo","Fernanda",53, Cargo.ADJUNTO);
@@ -67,9 +79,17 @@ public static void Jurado(JComboBox chopais){
     jurados.add(t4);
     for (Profesor t : jurados){
         chopais.addItem(t.getNombres()+" " +t.getApellidos());
+    }
+    }
+    
+    else{
+    for (Profesor t : jurados){
+        chopais.addItem(t.getNombres()+" " +t.getApellidos());
     } 
 }
+}
 public static void Tutor(JComboBox chopais){
+    if(bandera==0){
     Profesor t1= new Profesor("Sanchez","Mariana",53, Cargo.ADJUNTO);
     Profesor t2= new Profesor("Nieto","Luis",53, Cargo.ADJUNTO);
     Profesor t3= new Profesor("Cardozo","Fernanda",53, Cargo.ADJUNTO);
@@ -81,10 +101,19 @@ public static void Tutor(JComboBox chopais){
     tutores.add(t4);
     for (Profesor t : tutores){
         chopais.addItem(t.getNombres()+" " +t.getApellidos());
+    }
+    }
+    
+    else{
+    for (Profesor t : tutores){
+        chopais.addItem(t.getNombres()+" " +t.getApellidos());
     } 
+} 
 }
 
 public static void Cotutor(JComboBox chopais){
+    
+    if(bandera==0){
     Profesor t1= new Profesor("Sanchez","Mariana",53, Cargo.ADJUNTO);
     Profesor t2= new Profesor("Nieto","Luis",53, Cargo.ADJUNTO);
     Profesor t3= new Profesor("Cardozo","Fernanda",53, Cargo.ADJUNTO);
@@ -96,10 +125,18 @@ public static void Cotutor(JComboBox chopais){
     cotutores.add(t4);
     for (Profesor t : cotutores){
         chopais.addItem(t.getNombres()+" " +t.getApellidos());
+    }
+    }
+    
+    else{
+    for (Profesor t : cotutores){
+        chopais.addItem(t.getNombres()+" " +t.getApellidos());
     } 
+} 
 }
 public static void Alumno(JComboBox chopais){
-    Alumno t1= new Alumno("Sosa","Joaquin",53, "143513");
+    if(bandera==0){
+            Alumno t1= new Alumno("Sosa","Joaquin",53, "143513");
     Alumno t2= new Alumno("Iriarte","Josefina",53, "65468");
     Alumno t3= new Alumno("Hourcade","Geronimo",53, "156734");
     Alumno t4= new Alumno("Meza","Exequiel",53, "134458");
@@ -112,7 +149,12 @@ public static void Alumno(JComboBox chopais){
     for (Alumno t : alumnos){
         chopais.addItem(t.getNombres()+" " +t.getApellidos());
     } 
-    
+    }
+    else{
+        for (Alumno t : alumnos){
+        chopais.addItem(t.getNombres()+" " +t.getApellidos());
+    } 
+    }
 }
 
 

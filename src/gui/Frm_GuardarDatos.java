@@ -5,13 +5,20 @@
  */
 package gui;
 
+import unt.herrera.prog2.tp7.gui.personas.modelos.Alumno;
+
 import Gestor.GestorTrabajo;
-import static Gestor.GestorTrabajo.Alumno;
 import static Gestor.GestorTrabajo.Cotutor;
 import static Gestor.GestorTrabajo.Jurado;
 import static Gestor.GestorTrabajo.Profesores;
 import static Gestor.GestorTrabajo.Tutor;
 import Datos.Trabajo;
+import static Gestor.GestorTrabajo.Alumno;
+import static Gestor.GestorTrabajo.alumnos;
+import static Gestor.GestorTrabajo.cotutores;
+import static Gestor.GestorTrabajo.jurados;
+import static Gestor.GestorTrabajo.profesores;
+import static Gestor.GestorTrabajo.tutores;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -47,10 +54,10 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
 
     public Frm_GuardarDatos() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/imagen/birrete (2).png")).getImage() );
+        setIconImage(new ImageIcon(getClass().getResource("/imagen/birrete (2).png")).getImage());
         this.setLocationRelativeTo(null);
 //        this.setExtendedState(Frm_GuardarDatos.MAXIMIZED_HORIZ);
-        ImageIcon nuevo = new ImageIcon (getClass().getResource("/imagen/fondonaranja1.jpg"));
+        ImageIcon nuevo = new ImageIcon(getClass().getResource("/imagen/fondonaranja1.jpg"));
         ImageIcon icono = new ImageIcon(nuevo.getImage().getScaledInstance(jLabel20.getWidth(), jLabel20.getHeight(), Image.SCALE_DEFAULT));
         jLabel20.setIcon(icono);
         jLabel20.setVisible(true);
@@ -58,11 +65,14 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
 //        ImageIcon icono2 = new ImageIcon(nuevo2.getImage().getScaledInstance(btnSalir.getWidth(), btnSalir.getHeight(), Image.SCALE_DEFAULT));
 //        btnSalir.setIcon(icono2);
 //        btnSalir.setVisible(true);
-        Jurado(comboJurado);
-        Profesores(comboProfesor);
-        Tutor(comboTutor);
-        Cotutor(comboCotutor);
-        Alumno(comboAlumno);
+        int x = 0;
+        if (x == 0) {
+            Jurado(comboJurado);
+            Profesores(comboProfesor);
+            Tutor(comboTutor);
+            Cotutor(comboCotutor);
+            Alumno(comboAlumno);
+        }
         txtAgProf.setVisible(false);
         txtAgAlumno.setVisible(false);
         txtAgCotutor.setVisible(false);
@@ -86,40 +96,39 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
 //        btnAtras.setVisible(false);
 //        fechaEx.setEnabled(false);
         cerrar();
+        x = 1;
     }
 
-    public void cerrar(){
+    public void cerrar() {
         try {
-          this.setDefaultCloseOperation(Frm_GuardarDatos.DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter(){
-            public void windowClosing (WindowEvent e){
-                confirmarSalida();
-                
+            this.setDefaultCloseOperation(Frm_GuardarDatos.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+
 //            frame1.setVisible(false);
-            
-            }
-        });
-        this.setVisible(true);
+                }
+            });
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch(Exception e){
-        e.printStackTrace();
     }
-    }
-    
-    
-    public void confirmarSalida(){
-        int valor= JOptionPane.showConfirmDialog(null, "Esta seguro de volver al menu principal?","ADVERTENCIA",JOptionPane.YES_NO_OPTION);
-        
-        if (valor==JOptionPane.YES_OPTION){ 
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(null, "Esta seguro de volver al menu principal?", "ADVERTENCIA", JOptionPane.YES_NO_OPTION);
+
+        if (valor == JOptionPane.YES_OPTION) {
             this.setVisible(false);
             JFrame frame = new Frm_Opciones();
-               
+
             frame.setLocationRelativeTo(frame);
             frame.setVisible(true);
-            this.setVisible(false);
+            this.hide();
 //            System.exit(0);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -381,12 +390,11 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             trabajo.setFechaPresentacion(dateFormat.format(fechaPre.getDate()));
             trabajo.setFechaAprobacion(dateFormat.format(fechaAp.getDate()));
             trabajo.setFechaExposicion(dateFormat.format(fechaEx.getDate()));
-            trabajo.setProfesor((String)comboProfesor.getSelectedItem());
-            trabajo.setTutor((String)comboTutor.getSelectedItem());
-            trabajo.setCotutor((String)comboCotutor.getSelectedItem());
-            trabajo.setJurado((String)comboJurado.getSelectedItem());
-            trabajo.setAlumno((String)comboAlumno.getSelectedItem());
-            
+            trabajo.setProfesor((String) comboProfesor.getSelectedItem());
+            trabajo.setTutor((String) comboTutor.getSelectedItem());
+            trabajo.setCotutor((String) comboCotutor.getSelectedItem());
+            trabajo.setJurado((String) comboJurado.getSelectedItem());
+            trabajo.setAlumno((String) comboAlumno.getSelectedItem());
 
             gt.guardar(trabajo);
             gt.guardarArchivo(trabajo);
@@ -403,16 +411,15 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-       int exit = JOptionPane.showConfirmDialog(null, "Desea volver al menu principal?", "Avertencia", JOptionPane.YES_NO_OPTION);
-       if (exit == JOptionPane.YES_OPTION){
-        
-       
-       this.setVisible(false);
+        int exit = JOptionPane.showConfirmDialog(null, "Desea volver al menu principal?", "Avertencia", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+
+            this.setVisible(false);
             JFrame frame = new Frm_Opciones();
-               
+
             frame.setLocationRelativeTo(frame);
             frame.setVisible(true);
-       }
+        }
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgregarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProfesorActionPerformed
@@ -423,10 +430,12 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             btnAgregarProfesor.setText("Agregar");
             jLabel10.setVisible(true);
             jLabel11.setVisible(true);
-        } else if (txtAgProf.getText().equalsIgnoreCase("")||txtApProf.getText().equalsIgnoreCase("")) {
+        } else if (txtAgProf.getText().equalsIgnoreCase("") || txtApProf.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Escribir el nuevo profesor");
         } else {
-            agregarAlCombo(txtAgProf.getText(),txtApProf.getText(),comboProfesor);
+            agregarAlCombo(txtAgProf.getText(), txtApProf.getText(), comboProfesor);
+            Profesor a = new Profesor(txtApProf.getText(), txtAgProf.getText(), 0, null);
+            profesores.add(a);
             txtAgProf.setVisible(false);
             txtApProf.setVisible(false);
             txtAgProf.setText("");
@@ -445,10 +454,12 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             btnAgregarJurado.setText("Agregar");
             jLabel14.setVisible(true);
             jLabel15.setVisible(true);
-        } else if (txtAgJurado.getText().equalsIgnoreCase("")||txtApJurado.getText().equalsIgnoreCase("")) {
+        } else if (txtAgJurado.getText().equalsIgnoreCase("") || txtApJurado.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Escribir el nuevo jurado");
         } else {
-            agregarAlCombo(txtAgJurado.getText(),txtApJurado.getText(),comboJurado);
+            agregarAlCombo(txtAgJurado.getText(), txtApJurado.getText(), comboJurado);
+            Profesor a = new Profesor(txtApJurado.getText(), txtAgJurado.getText(), 0, null);
+            jurados.add(a);
             txtAgJurado.setVisible(false);
             txtApJurado.setVisible(false);
             txtAgJurado.setText("");
@@ -467,10 +478,12 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             btnAgregarTutor.setText("Agregar");
             jLabel12.setVisible(true);
             jLabel13.setVisible(true);
-        } else if (txtAgTutor.getText().equalsIgnoreCase("")||txtApTutor.getText().equalsIgnoreCase("")) {
+        } else if (txtAgTutor.getText().equalsIgnoreCase("") || txtApTutor.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Escribir el nuevo tutor");
         } else {
-            agregarAlCombo(txtAgTutor.getText(),txtApTutor.getText(),comboTutor);
+            agregarAlCombo(txtAgTutor.getText(), txtApTutor.getText(), comboTutor);
+            Profesor a = new Profesor(txtApTutor.getText(), txtAgTutor.getText(), 0, null);
+            tutores.add(a);
             txtAgTutor.setVisible(false);
             txtApTutor.setVisible(false);
             txtAgTutor.setText("");
@@ -479,8 +492,8 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             jLabel12.setVisible(false);
             jLabel13.setVisible(false);
         }
-    
-    
+
+
     }//GEN-LAST:event_btnAgregarTutorActionPerformed
 
     private void btnAgregarCotutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCotutorActionPerformed
@@ -491,10 +504,12 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             btnAgregarCotutor.setText("Agregar");
             jLabel18.setVisible(true);
             jLabel19.setVisible(true);
-        } else if (txtAgCotutor.getText().equalsIgnoreCase("")||txtApCotutor.getText().equalsIgnoreCase("")) {
+        } else if (txtAgCotutor.getText().equalsIgnoreCase("") || txtApCotutor.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Escribir el nuevo cotutor");
         } else {
-            agregarAlCombo(txtAgCotutor.getText(),txtApCotutor.getText(),comboCotutor);
+            agregarAlCombo(txtAgCotutor.getText(), txtApCotutor.getText(), comboCotutor);
+            Profesor a = new Profesor(txtApProf.getText(), txtAgProf.getText(), 0, null);
+            cotutores.add(a);
             txtAgCotutor.setVisible(false);
             txtApCotutor.setVisible(false);
             txtAgCotutor.setText("");
@@ -503,7 +518,7 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             jLabel18.setVisible(false);
             jLabel19.setVisible(false);
         }
-    
+
     }//GEN-LAST:event_btnAgregarCotutorActionPerformed
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
@@ -514,10 +529,13 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
             btnAgregarAlumno.setText("Agregar");
             jLabel16.setVisible(true);
             jLabel17.setVisible(true);
-        } else if (txtAgAlumno.getText().equalsIgnoreCase("")||txtApAlumno.getText().equalsIgnoreCase("")) {
+        } else if (txtAgAlumno.getText().equalsIgnoreCase("") || txtApAlumno.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Escribir el nuevo alumno");
         } else {
-            agregarAlCombo(txtAgAlumno.getText(),txtApAlumno.getText(),comboAlumno);
+            agregarAlCombo(txtAgAlumno.getText(), txtApAlumno.getText(), comboAlumno);
+
+            Alumno a = new Alumno(txtApAlumno.getText(), txtAgAlumno.getText(), 0, null);
+            alumnos.add(a);
             txtAgAlumno.setVisible(false);
             txtApAlumno.setVisible(false);
             txtAgAlumno.setText("");
@@ -528,11 +546,11 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
 
-    
-    public void agregarAlCombo(String profe, String apellido,JComboBox combo){
-        Profesor a= new Profesor(profe,apellido,0,null);
-        combo.addItem(a.getNombres()+" "+ a.getApellidos());
+    public void agregarAlCombo(String profe, String apellido, JComboBox combo) {
+        Profesor a = new Profesor(apellido, profe, 0, null);
+        combo.addItem(a.getNombres() + " " + a.getApellidos());
     }
+
     /**
      * @param args the command line arguments
      */
@@ -580,10 +598,10 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> comboAlumno;
     private javax.swing.JComboBox<String> comboCotutor;
-    private javax.swing.JComboBox<String> comboJurado;
-    private javax.swing.JComboBox<String> comboProfesor;
+    public static javax.swing.JComboBox<String> comboJurado;
+    public static javax.swing.JComboBox<String> comboProfesor;
     private javax.swing.JComboBox<String> comboTutor;
-    private com.toedter.calendar.JDateChooser fechaAp;
+    public static com.toedter.calendar.JDateChooser fechaAp;
     private com.toedter.calendar.JDateChooser fechaEx;
     private com.toedter.calendar.JDateChooser fechaPre;
     private javax.swing.JLabel jLabel1;
@@ -618,8 +636,8 @@ public class Frm_GuardarDatos extends javax.swing.JFrame {
     private javax.swing.JTextField txtApJurado;
     private javax.swing.JTextField txtApProf;
     private javax.swing.JTextField txtApTutor;
-    private javax.swing.JTextField txtArea;
-    private javax.swing.JTextField txtDuracion;
-    private javax.swing.JTextField txtTitulo;
+    public static javax.swing.JTextField txtArea;
+    public static javax.swing.JTextField txtDuracion;
+    public static javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

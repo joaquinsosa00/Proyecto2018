@@ -81,12 +81,13 @@ public class Frm_ListaTrabajos extends javax.swing.JFrame {
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setOpaque(false);
         jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 149, 837, 248));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 837, 248));
 
         btnListar.setBackground(new java.awt.Color(0, 102, 102));
         btnListar.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
